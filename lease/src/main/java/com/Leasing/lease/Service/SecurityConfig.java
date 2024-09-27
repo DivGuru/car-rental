@@ -1,39 +1,48 @@
 package com.Leasing.lease.Service;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
+import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
-	
-	@Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-		return http
-				.csrf(csrf->csrf.disable())
-				.headers(header-> header.frameOptions().disable())	
-				.authorizeHttpRequests( (auth)->{
-				auth.anyRequest().permitAll();
-				})
-				.build();
-				
-	}
-	
-	@Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:8080")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
-            }
-        };
+    
+    @Bean
+    public JwtDecoder jwtDecoder() {
+        String jwkSetUri = "http://192.168.68.116:8084/formlogin/.well-known/jwks.json"; // Replace with your User microservice's JWK Set URI
+        return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
     }
+    
 
+    @Bean
+    SecurityFilterChain securityFilterChainJwt(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher("/Car/**","/lease/**","/User/**")
+                .csrf(csrf -> csrf.disable())
+                .headers(header-> header.frameOptions().disable())	
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .exceptionHandling(ex -> ex
+                    .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+                    .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+                )
+                .build();
+    }
+    
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+        return new JwtAuthenticationConverter();
+    }
 }
