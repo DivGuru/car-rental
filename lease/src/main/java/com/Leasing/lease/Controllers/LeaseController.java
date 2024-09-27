@@ -25,19 +25,19 @@ public class LeaseController {
     private JWTTokenUtil jwtTokenUtil;
 
     @GetMapping("/")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_USER')")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<String> getLease() throws Exception {
         jwtTokenUtil.printTokenDetails(); // Print the token details
         return ResponseEntity.ok("Success");
     }
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_USER')")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<LeaseDTO> getLease(@PathVariable Long id) throws Exception {
         return leaseService.getLease(id);
     }
 
     @PostMapping("/Submit")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_USER')")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<LeaseDTO> AddLease(@RequestBody LeaseDTO leaseDTO) throws Exception {
     	System.out.println("Inside Post");
         return leaseService.AddLease(leaseDTO);
