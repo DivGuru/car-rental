@@ -2,9 +2,12 @@ package com.Leasing.lease.Service;
 
 import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.Leasing.lease.Clients.CarClient;
+import com.Leasing.lease.Clients.CarDTO;
 import com.Leasing.lease.Entity.LeaseDTO;
 import com.Leasing.lease.Entity.Status;
 import com.Leasing.lease.Repository.LeaseDTORepository;
@@ -13,6 +16,9 @@ import com.Leasing.lease.Repository.LeaseDTORepository;
 public class LeaseService {
 	
 	private final LeaseDTORepository leaseDTORepository;
+	
+	@Autowired
+    private CarClient carClient;
 
 	public LeaseService(LeaseDTORepository leaseDTORepository) {
 		super();
@@ -28,9 +34,10 @@ public class LeaseService {
 		}
 	}
 	
-	public String AddLease(LeaseDTO lease) throws Exception{
+	@SuppressWarnings("unused")
+	public ResponseEntity<LeaseDTO> AddLease(LeaseDTO lease) throws Exception{
 		try {
-	        // Set the status based on the lease start and end dates
+			
 	        LocalDateTime now = LocalDateTime.now();
 	        
 	        if (lease.getLeaseStartDateTime().isAfter(now)) {
@@ -40,15 +47,40 @@ public class LeaseService {
 	        } else {
 	            lease.setStatus(Status.STARTED);
 	        }
-	        LeaseDTO savedLease = leaseDTORepository.save(lease);
-	        return "Added Successfully";
-	    } catch (Exception e) {
-	        throw new Exception(e);
+	        
+	        Long carId=lease.getCarId();
+	        
+	        CarDTO car = carClient.getCarById(carId);
+	        System.out.printf("Car deails %d %s\n",car.getCarId(),car.getCarModel());
+	        System.out.println(car);
+	        double leaseAmount = calculateLeaseAmount(car);
+	        System.out.printf("%f we got leaseamount as \n",leaseAmount);
+	        // Set calculated lease amount
+	        lease.setTotalAmount(leaseAmount);
+
+	        // Set other lease details as needed
+	        lease.setCarId(carId);
+	        lease.setStatus(Status.STARTED);
+
+	        // Save lease to database
+	        LeaseDTO newlease=leaseDTORepository.save(lease);
+	        System.out.println("And we get" + newlease);
+	        System.out.print("In here we got id:");
+	        System.out.print(newlease.getLeaseId());
+	        return ResponseEntity.ok(newlease);
 	    }
+		catch(Exception e) {
+			return null;
+		}
 	}
-	
-	
-	
+
+	    private double calculateLeaseAmount(CarDTO car) {
+	        // Implement your lease calculation logic here
+	        // For example, using car's gross price
+	        double grossPrice = Double.parseDouble(car.getCarGrossPrice());
+	        double interestRate = 0.05; // 5% interest rate
+	        return grossPrice * interestRate;
+	    }
 	
 	
 	

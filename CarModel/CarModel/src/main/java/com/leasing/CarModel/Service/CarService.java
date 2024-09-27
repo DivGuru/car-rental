@@ -24,7 +24,8 @@ public class CarService {
 	
 	public String SubmitNewCar(CarDTO carDTO) throws Exception {
 		try {
-			carDTORepository.save(carDTO);
+			CarDTO nc= carDTORepository.save(carDTO);
+			System.out.println(nc.getCarId());
 		}catch (Exception e) {
 			throw new Exception(e);
 		}
