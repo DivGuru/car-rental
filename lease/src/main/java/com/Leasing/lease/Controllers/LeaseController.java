@@ -49,6 +49,7 @@ public class LeaseController {
     @PostMapping("/return/{id}")
     @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<String> ReturnCar(@PathVariable Long id, @RequestBody ReturnDTO returnDto) throws Exception{
+    	System.out.println(returnDto.getReturnDistance());
     	return leaseService.ReturnCar(id, returnDto);
     }
     

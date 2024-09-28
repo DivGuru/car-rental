@@ -61,9 +61,9 @@ public class CarController {
 		
 	}
 	
-	@PutMapping("Car/return/{id}")
+	@PutMapping("return/{id}")
 	@PreAuthorize("hasAuthority('SCOPE_USER')")
-	public String UpdateReturnedCar(@PathVariable("id") Long id, ReturnDTO returnDto) throws Exception {
+	public String UpdateReturnedCar(@PathVariable("id") Long id,@RequestBody ReturnDTO returnDto) throws Exception {
 		return carService.UpdateReturnedCar(id, returnDto);
 	}
 	

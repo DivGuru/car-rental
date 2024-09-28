@@ -61,6 +61,7 @@ public class CarService {
 	@Transactional
 	public String UpdateReturnedCar(Long id, ReturnDTO returnDto) throws Exception {
 		try {
+			System.out.println(returnDto.getReturnDistance());
 			CarDTO carDTO=carDTORepository.findById(id).orElseThrow(() -> new RuntimeException("NO Car Found"));
 			carDTO.setCarIsAvailable(true);
 			carDTO.setCarDistance(returnDto.getReturnDistance());
