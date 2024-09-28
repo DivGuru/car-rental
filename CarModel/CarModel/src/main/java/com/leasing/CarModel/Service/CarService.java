@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.leasing.CarModel.EntityDTO.CarDTO;
 import com.leasing.CarModel.Repository.CarDTORepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class CarService {
 	
@@ -40,6 +42,19 @@ public class CarService {
 			throw new Exception(e);
 		}
 		return "Deleted Successfully";
+	}
+
+	@Transactional
+	public String UpdateAvailability(Long id) throws Exception {
+		try {
+			System.out.println("In here avail");
+			CarDTO carDTO=carDTORepository.findById(id).orElseThrow(() -> new RuntimeException("NO Car Found"));
+			carDTO.setCarIsAvailable(false);
+			return "Success";
+		}catch (Exception e) {
+			throw new Exception(e);
+		}
+		
 	}
 	
 }

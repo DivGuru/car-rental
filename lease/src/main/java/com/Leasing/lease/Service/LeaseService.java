@@ -51,6 +51,10 @@ public class LeaseService {
 	        Long carId=lease.getCarId();
 	        
 	        CarDTO car = carClient.getCarById(carId);
+	        System.out.println("Before");
+	        String ans=carClient.UpdateAvailability(carId);
+	        System.out.println(ans);
+	        System.out.println("After");
 	        System.out.printf("Car deails %d %s\n",car.getCarId(),car.getCarModel());
 	        System.out.println(car);
 	        double leaseAmount = calculateLeaseAmount(car);
