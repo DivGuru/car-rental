@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.leasing.CarModel.EntityDTO.CarDTO;
+import com.leasing.CarModel.EntityDTO.ReturnDTO;
 import com.leasing.CarModel.Service.CarService;
-
-import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/Car")
@@ -54,7 +53,7 @@ public class CarController {
 		return carService.DeleteCar(id);
 	}
 	
-	@Transactional
+
 	@PutMapping("/book/{id}")
 	@PreAuthorize("hasAuthority('SCOPE_USER')")
 	public String UpdateAvailability(@PathVariable Long id) throws Exception{
@@ -62,6 +61,11 @@ public class CarController {
 		
 	}
 	
+	@PutMapping("Car/return/{id}")
+	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	public String UpdateReturnedCar(@PathVariable("id") Long id, ReturnDTO returnDto) throws Exception {
+		return carService.UpdateReturnedCar(id, returnDto);
+	}
 	
 	
 	

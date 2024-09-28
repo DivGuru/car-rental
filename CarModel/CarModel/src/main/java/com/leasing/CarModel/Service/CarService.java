@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.leasing.CarModel.EntityDTO.CarDTO;
+import com.leasing.CarModel.EntityDTO.ReturnDTO;
 import com.leasing.CarModel.Repository.CarDTORepository;
 
 import jakarta.transaction.Transactional;
@@ -55,6 +56,18 @@ public class CarService {
 			throw new Exception(e);
 		}
 		
+	}
+
+	@Transactional
+	public String UpdateReturnedCar(Long id, ReturnDTO returnDto) throws Exception {
+		try {
+			CarDTO carDTO=carDTORepository.findById(id).orElseThrow(() -> new RuntimeException("NO Car Found"));
+			carDTO.setCarIsAvailable(true);
+			carDTO.setCarDistance(returnDto.getReturnDistance());
+			return "Success";
+		}catch (Exception e) {
+			throw new Exception(e);
+		}
 	}
 	
 }

@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Leasing.lease.Entity.LeaseDTO;
+import com.Leasing.lease.Entity.ReturnDTO;
 import com.Leasing.lease.Service.LeaseService;
 import com.Leasing.lease.Util.JWTTokenUtil;
+
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/lease")
@@ -42,4 +45,11 @@ public class LeaseController {
     	System.out.println("Inside Post");
         return leaseService.AddLease(leaseDTO);
     }
+    
+    @PostMapping("/return/{id}")
+    @PreAuthorize("hasAuthority('SCOPE_USER')")
+    public ResponseEntity<String> ReturnCar(@PathVariable Long id, @RequestBody ReturnDTO returnDto) throws Exception{
+    	return leaseService.ReturnCar(id, returnDto);
+    }
+    
 }
