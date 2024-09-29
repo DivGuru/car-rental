@@ -36,10 +36,6 @@ public class CustomerUserDetailsService implements UserDetailsService{
                         .collect(Collectors.toList())
         );
 		
-	//	return null;
-	}
-	
-	
-	
+	}		
 	
 }
