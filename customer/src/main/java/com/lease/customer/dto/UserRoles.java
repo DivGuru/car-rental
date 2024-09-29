@@ -1,6 +1,6 @@
 package com.lease.customer.dto;
 
-enum UserRoles {
+public enum UserRoles {
 	BROKER,
 	ADMIN,
 	CARCUSTOMER

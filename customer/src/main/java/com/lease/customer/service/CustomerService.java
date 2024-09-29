@@ -7,13 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lease.customer.dto.Customer;
+import com.lease.customer.dto.UserLogin;
 import com.lease.customer.service.repository.CustomerRepository;
+import com.lease.customer.service.repository.UserLoginRepository;
 
 @Service
 public class CustomerService {
 	
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	@Autowired
+	UserLoginRepository userLoginRepository;
 	
 	public Customer getCustomerById(long id) throws Exception {
 
@@ -46,6 +51,13 @@ public class CustomerService {
 	public List<Customer> findByName(String username) {
 		return customerRepository.findByName(username);
 		
+	}
+
+
+	public Customer addCustomerToUser(Long id, Customer customer) {
+		UserLogin user= userLoginRepository.findById(id).orElse(null);
+		user.setCustomer(customer);
+		return customerRepository.save(customer);
 	}
 
 }
