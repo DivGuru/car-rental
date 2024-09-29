@@ -1,6 +1,7 @@
 package com.lease.customer.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +29,12 @@ public class SignUpController {
 		UserLogin newUser=loginService.signUpUser(user);
 		System.out.println("user Saved  "+newUser);
 		return ResponseEntity.ok("Signed up user "+user.getUsername());
+	}
+	
+	@GetMapping("/")
+	public ResponseEntity<String> signUpUser1(){
+		
+		return ResponseEntity.ok("Hello");
 	}
 
 }

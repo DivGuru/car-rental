@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import com.Leasing.lease.Clients.CarClient;
 import com.Leasing.lease.Clients.CarDTO;
 import com.Leasing.lease.Entity.LeaseDTO;
+import com.Leasing.lease.Entity.ReturnDTO;
 import com.Leasing.lease.Entity.Status;
 import com.Leasing.lease.Repository.LeaseDTORepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class LeaseService {
@@ -51,6 +54,10 @@ public class LeaseService {
 	        Long carId=lease.getCarId();
 	        
 	        CarDTO car = carClient.getCarById(carId);
+	        System.out.println("Before");
+	        String ans=carClient.UpdateAvailability(carId);
+	        System.out.println(ans);
+	        System.out.println("After");
 	        System.out.printf("Car deails %d %s\n",car.getCarId(),car.getCarModel());
 	        System.out.println(car);
 	        double leaseAmount = calculateLeaseAmount(car);
@@ -81,6 +88,21 @@ public class LeaseService {
 	        double interestRate = 0.05; // 5% interest rate
 	        return grossPrice * interestRate;
 	    }
+
+	    @Transactional
+		public ResponseEntity<String> ReturnCar(Long id, ReturnDTO returnDto) throws Exception {
+			try {
+				
+				LeaseDTO lease= leaseDTORepository.findById(id).orElseThrow(()-> new RuntimeException("Lease Not Found"));
+				lease.setStatus(Status.CONCLUDED);
+				lease.setLeaseEndDate(returnDto.getReturnEndTime());
+				carClient.UpdateReturnedCar(lease.getCarId(), returnDto);
+				return ResponseEntity.ok("Successfully Returned");
+			}catch(Exception e) {
+				throw new Exception(e);
+			}
+			
+		}
 	
 	
 	
