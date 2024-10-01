@@ -23,7 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a5ef9e8-4dd2-4d1d-b39b-9837360c4c76" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/service/CustomerUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/service/CustomerUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/CarDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/test/java/com/lease/customer/controller/CustomerControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/CarModel/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../CarModel/CarModel/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../CarModel/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/client/CarClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/client/CarClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/UserRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/UserRoles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lease/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../lease/data/demo.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,23 +55,23 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2mfF9pUVHPXveorla6ZX8G6l99X" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.All in ProxyServer.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/satish/GitHub/car-rental/ProxyServer"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.All in ProxyServer.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/satish/GitHub/car-rental/ProxyServer&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="All in ProxyServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ProxyServer" />
