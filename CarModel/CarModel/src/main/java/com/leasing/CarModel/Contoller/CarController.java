@@ -36,7 +36,7 @@ public class CarController {
 	}
 	
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
 	public ResponseEntity<CarDTO> GetCarById(@PathVariable Long id){
 		return carService.GetCarById(id);
 	}

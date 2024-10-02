@@ -29,7 +29,7 @@ public class Customer {
 	private String email;
 	private String phone;
 	
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonManagedReference("customerReference")
 	private List<Role> roles = new ArrayList<Role>();
 	
