@@ -1,38 +1,35 @@
 package com.lease.customer.controller;
 
-import com.lease.customer.CustomerApplication;
-import com.lease.customer.config.SecurityConfig;
-import com.lease.customer.dto.Customer;
-import com.lease.customer.dto.Role;
-import com.lease.customer.dto.UserRoles;
-import com.lease.customer.service.CustomerService;
-import com.lease.customer.service.CustomerUserDetailsService;
-import com.netflix.discovery.converters.Auto;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.lease.customer.config.SecurityConfig;
+import com.lease.customer.dto.Customer;
+import com.lease.customer.dto.Role;
+import com.lease.customer.dto.UserRoles;
+import com.lease.customer.service.CustomerService;
+import com.lease.customer.service.CustomerUserDetailsService;
 
 @ExtendWith(SpringExtension.class)
 @Import(SecurityConfig.class)
@@ -62,7 +59,7 @@ public class CustomerControllerTest {
         Mockito.when(customerService.getCustomerById(100)).thenReturn(mockCustomer);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/customer/{id}",100)
-                .with(SecurityMockMvcRequestPostProcessors.jwt().authorities(new SimpleGrantedAuthority("SCOPE_ADMIN")))
+                .with(SecurityMockMvcRequestPostProcessors.jwt().authorities(new SimpleGrantedAuthority("SCOPE_USER")))
                 .accept(MediaType.ALL);
 
         MvcResult mvcResult = mockMvc.perform(requestBuilder).andExpect(status().isOk())
@@ -86,13 +83,6 @@ public class CustomerControllerTest {
         mockCustomer.setRoles(Arrays.asList(role));
         Mockito.when(customerService.getCustomerById(100)).thenReturn(mockCustomer);
 
-     /*   Mockito.when(customerUserDetailsService.loadUserByUsername(Mockito.anyString())).thenReturn(return new User(
-                user.getUsername(),
-                user.getPassword(),
-                Arrays.stream(new String[]{"USER"})
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList())
-        ););*/
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/customer/{id}",100)
                 .with(SecurityMockMvcRequestPostProcessors.jwt().authorities(new SimpleGrantedAuthority("SCOPE_ADMIN")))

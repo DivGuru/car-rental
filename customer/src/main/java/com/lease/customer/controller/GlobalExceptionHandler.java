@@ -12,8 +12,8 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<CustomerError> handleException(Exception e) {
-		CustomerError error = new CustomerError("Error in handling request ",HttpStatus.INTERNAL_SERVER_ERROR.value(),
+		CustomerError error = new CustomerError(e.getMessage(),HttpStatus.UNAUTHORIZED.value(),
 				LocalDateTime.now().toString());
-		return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<>(error,HttpStatus.UNAUTHORIZED);
 	}
 }
