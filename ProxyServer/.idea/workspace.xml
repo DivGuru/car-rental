@@ -23,21 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a5ef9e8-4dd2-4d1d-b39b-9837360c4c76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/CarDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../customer/src/test/java/com/lease/customer/controller/CustomerControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/controller/CarController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/jarRepositories.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../CarModel/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CarModel/CarModel/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../CarModel/CarModel/data/demo.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../CarModel/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../CarModel/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CarModel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CarModel/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/client/CarClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/client/CarClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/UserRoles.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/dto/UserRoles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../lease/data/demo.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../lease/data/demo.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/main/java/com/lease/customer/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer/src/test/java/com/lease/customer/controller/CustomerControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../customer/src/test/java/com/lease/customer/controller/CustomerControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

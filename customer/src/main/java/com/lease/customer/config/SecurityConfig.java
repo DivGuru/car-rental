@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -40,7 +41,10 @@ import com.nimbusds.jose.proc.SecurityContext;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    //@Autowired
     private final CustomerUserDetailsService customerUserDetailsService;
+
+   // @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public SecurityConfig(CustomerUserDetailsService customerUserDetailsService, PasswordEncoder passwordEncoder) {
@@ -77,7 +81,7 @@ public class SecurityConfig {
         return http
                 .securityMatcher("/token")
                 .csrf(csrf -> csrf.disable())
-                .headers(header-> header.frameOptions().disable())	
+                .headers(header-> header.frameOptions().disable())
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
