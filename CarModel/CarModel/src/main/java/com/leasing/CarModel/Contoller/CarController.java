@@ -36,19 +36,19 @@ public class CarController {
 	}
 	
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
+	@PreAuthorize("hasAuthority('SCOPE_USER')")
 	public ResponseEntity<CarDTO> GetCarById(@PathVariable Long id){
 		return carService.GetCarById(id);
 	}
 	
 	@PostMapping("/Submit")
-	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
 	public String SubmitNewCar(@RequestBody CarDTO carDTO) throws Exception {
 		return carService.SubmitNewCar(carDTO);
 	}
 	
 	@DeleteMapping("/{id}")
-	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
 	public String DeleteCar(@PathVariable Long id) throws Exception {
 		return carService.DeleteCar(id);
 	}
