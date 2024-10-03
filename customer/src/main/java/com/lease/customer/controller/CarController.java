@@ -27,4 +27,9 @@ public class CarController {
          carClient.DeleteCar(id);
          return ResponseEntity.ok("Deleted the car with id "+id);
     }
+    
+    @DeleteMapping("/Hi")
+    public ResponseEntity<String> DeleteCar() throws Exception {
+         return ResponseEntity.ok("Inside Hi");
+    }
 }

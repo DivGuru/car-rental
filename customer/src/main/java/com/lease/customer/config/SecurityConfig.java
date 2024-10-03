@@ -104,6 +104,23 @@ public class SecurityConfig {
                 )
                 .build();
     }
+    
+    @Bean
+    @Order(3)
+    SecurityFilterChain securityFilterChainJwtCar(HttpSecurity http) throws Exception {
+        return http
+                .securityMatcher("/Car/**")
+                .csrf(csrf -> csrf.disable())
+                .headers(header-> header.frameOptions().disable())	
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())))
+                .exceptionHandling(ex -> ex
+                    .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
+                    .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
+                )
+                .build();
+    }
 
     @Bean
     public JwtDecoder jwtDecoder(RsaKeyProperties rsaKeys) {
