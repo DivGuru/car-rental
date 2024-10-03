@@ -17,14 +17,14 @@ public class CarController {
     @PostMapping("/Submit")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<String> SubmitNewCar(@RequestBody CarDTO carDTO) throws Exception {
-         carClient.addNewCarDetails(carDTO);
+         carClient.SubmitNewCar(carDTO);
          return ResponseEntity.ok("Added the car");
     }
-
+    
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<String> DeleteCar(@PathVariable Long id) throws Exception {
-         carClient.deleteCar(id);
+         carClient.DeleteCar(id);
          return ResponseEntity.ok("Deleted the car with id "+id);
     }
 }

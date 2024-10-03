@@ -21,16 +21,20 @@ import jakarta.transaction.Transactional;
 @RequestMapping("/lease")
 public class LeaseController {
 
-    @Autowired
+    
     private LeaseService leaseService;
 
-    @Autowired
+    
     private JWTTokenUtil jwtTokenUtil;
-
-    @GetMapping("/")
+    
+    public LeaseController(LeaseService leaseService, JWTTokenUtil jwtTokenUtil) {
+		super();
+		this.leaseService = leaseService;
+		this.jwtTokenUtil = jwtTokenUtil;
+	}
+	@GetMapping("/")
     @PreAuthorize("hasAuthority('SCOPE_USER')")
     public ResponseEntity<String> getLease() throws Exception {
-        jwtTokenUtil.printTokenDetails(); // Print the token details
         return ResponseEntity.ok("Success");
     }
     @GetMapping("/{id}")

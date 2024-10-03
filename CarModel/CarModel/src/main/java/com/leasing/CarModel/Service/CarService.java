@@ -28,12 +28,13 @@ public class CarService {
 	public String SubmitNewCar(CarDTO carDTO) throws Exception {
 		try {
 			CarDTO nc= carDTORepository.save(carDTO);
-			System.out.println(nc.getCarId());
+			//System.out.println(nc.getCarId());
+			return "Submitted Successfully";
 		}catch (Exception e) {
 			throw new Exception(e);
 		}
 		
-		return "Submitted Successfully";
+		
 	}
 	
 	public String DeleteCar(Long id) throws Exception {
