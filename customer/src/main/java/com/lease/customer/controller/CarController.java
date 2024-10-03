@@ -17,6 +17,7 @@ public class CarController {
     @PostMapping("/Submit")
     @PreAuthorize("hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<String> SubmitNewCar(@RequestBody CarDTO carDTO) throws Exception {
+        System.out.println("Submitting new car with details "+carDTO);
          carClient.SubmitNewCar(carDTO);
          return ResponseEntity.ok("Added the car");
     }

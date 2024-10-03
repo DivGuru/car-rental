@@ -44,6 +44,7 @@ public class CarController {
 	@PostMapping("/Submit")
 	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
 	public String SubmitNewCar(@RequestBody CarDTO carDTO) throws Exception {
+		System.out.print("Received input to submit "+carDTO);
 		return carService.SubmitNewCar(carDTO);
 	}
 	
