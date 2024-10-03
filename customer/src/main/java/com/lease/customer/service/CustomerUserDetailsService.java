@@ -31,7 +31,7 @@ public class CustomerUserDetailsService implements UserDetailsService{
 			return new User(
 	                user.getUsername(),
 	                user.getPassword(),
-	                Arrays.stream(new String[]{"USER"})
+	                Arrays.stream(new String[]{"ADMIN"})
 	                        .map(SimpleGrantedAuthority::new)
 	                        .collect(Collectors.toList())
 	        );
