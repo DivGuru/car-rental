@@ -27,7 +27,7 @@ public class CustomerUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserLogin user = userLoginService.getUserByName(username);
 		
-		if(user.getCustomer()==null || user.getCustomer().getRoles().size()==0) {
+		/*if(user.getCustomer()==null || user.getCustomer().getRoles().size()==0) {
 			return new User(
 	                user.getUsername(),
 	                user.getPassword(),
@@ -35,11 +35,12 @@ public class CustomerUserDetailsService implements UserDetailsService{
 	                        .map(SimpleGrantedAuthority::new)
 	                        .collect(Collectors.toList())
 	        );
-		}
+		}*/
 		List<SimpleGrantedAuthority> authorities = user.getCustomer().getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority("" + role.getRole().name()))
                 .collect(Collectors.toList());
-		
+		System.out.println("Authority is "+authorities.get(0));
+		System.out.println("Authorities "+authorities);
 		return new User(user.getUsername(), user.getPassword(), authorities);
 		
 		

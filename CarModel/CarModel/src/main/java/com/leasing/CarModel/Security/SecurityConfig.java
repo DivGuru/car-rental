@@ -20,7 +20,7 @@ public class SecurityConfig {
     
     @Bean
     public JwtDecoder jwtDecoder() {
-        String jwkSetUri = "http://192.168.68.116:8084/formlogin/.well-known/jwks.json"; // Replace with your User microservice's JWK Set URI
+        String jwkSetUri = "http://192.168.68.118:8084/formlogin/.well-known/jwks.json"; // Replace with your User microservice's JWK Set URI
         return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
     }
     

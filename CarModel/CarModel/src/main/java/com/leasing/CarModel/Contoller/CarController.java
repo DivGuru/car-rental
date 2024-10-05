@@ -30,7 +30,7 @@ public class CarController {
 	}
 
 	@GetMapping(path="/")
-	@PreAuthorize("hasAuthority('SCOPE_USER')")
+	//@PreAuthorize("hasAuthority('SCOPE_USER')")
 	public String Welcome() {
 		return "Hello World - This is Car";
 	}

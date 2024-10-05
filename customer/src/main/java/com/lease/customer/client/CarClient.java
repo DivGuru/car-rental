@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.lease.customer.dto.CarDTO;
 
-@FeignClient(name="carModel",configuration = com.lease.customer.config.FeignClientConfig.class)
+@FeignClient(name="carModels",configuration = com.lease.customer.config.FeignClientConfig.class)
 public interface CarClient {
 
     @GetMapping("Car/{id}")

@@ -1,11 +1,10 @@
 package com.lease.customer.controller;
 
+import com.lease.customer.dto.Customer;
+import com.lease.customer.service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.lease.customer.dto.UserLogin;
 import com.lease.customer.service.UserLoginService;
@@ -15,6 +14,9 @@ import com.lease.customer.service.UserLoginService;
 public class SignUpController {
 	
 	private UserLoginService loginService;
+
+	@Autowired
+	private CustomerService customerService;
 	
 	
 	public SignUpController(UserLoginService loginService) {
@@ -30,7 +32,14 @@ public class SignUpController {
 		System.out.println("user Saved  "+newUser);
 		return ResponseEntity.ok("Signed up user "+user.getUsername());
 	}
-	
+
+	@PostMapping("/add/{id}")
+	public ResponseEntity<String> addCustomerToUser(@PathVariable Long id, @RequestBody Customer customer) {
+		Customer customer2 = customerService.addCustomerToUser(id,customer);
+		return ResponseEntity.ok("Added customer with id "+customer2.getId());
+
+	}
+
 	@GetMapping("/")
 	public ResponseEntity<String> signUpUser1(){
 		
